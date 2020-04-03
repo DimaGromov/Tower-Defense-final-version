@@ -15,7 +15,6 @@ public class Display extends AnimationTimer {
     final int[] healths = {3};
     Healths hp;
 
-
     Display(GraphicsContext graphicsContext, Image background, Stage primaryStage, Healths hp) {
         this.graphicsContext = graphicsContext;
         this.background = background;
@@ -24,19 +23,15 @@ public class Display extends AnimationTimer {
         this.hp = hp;
     }
 
-
     @Override
     public void handle(long now) {
         graphicsContext.clearRect(0,0,1200,600);
 
         graphicsContext.drawImage(background,0,0);
 
-
         for (Bomb bomb: Bomb.bombs) {
             bomb.render(graphicsContext);
         }
-
-
 
         try{
             for (Enemys enemy : Enemys.enemys) {

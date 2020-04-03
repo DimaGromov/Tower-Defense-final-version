@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class Enemys extends Sprite {
 
+    private static int counterEnemys = 0;
+
     final String fileName = "Enemy.gif";
 
     public Enemys() {
@@ -16,12 +18,24 @@ public class Enemys extends Sprite {
         this.setPositionX(((int) (Math.random() * 400)), ((int) (150 + Math.random() * 400)));
         enemys.add(this);
 
+        if(counterEnemys > 10){
+            this.setVelocityX(Speed.TWO);
+        } else if (counterEnemys > 20) {
+            this.setVelocityX(Speed.THREE);
+        } else if (counterEnemys > 50) {
+            this.setVelocityX(Speed.FOUR);
+        } else {
+            this.setVelocityX(Speed.ONE);
+        }
+
+
+        counterEnemys++;
     }
 
     public static  ArrayList<Enemys> enemys = new ArrayList<>();
 
     public void move(){
-        this.setVelocityX((int) (1 + Math.random() * 4));
+
         this.update(3);
 
         checkCollision();

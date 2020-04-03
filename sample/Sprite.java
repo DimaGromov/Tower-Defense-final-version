@@ -9,7 +9,7 @@ public class Sprite {
     private Image image;
     private double positionX;
     private double positionY;
-    private double velocityX;
+    private int velocityX;
     private double width;
     private double height;
 
@@ -17,10 +17,6 @@ public class Sprite {
         positionX = 0;
         positionY = 100;
         velocityX = 1;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public Sprite(double x, double y){
@@ -45,15 +41,13 @@ public class Sprite {
         this.positionY = positionY;
     }
 
-    public void setVelocityX(double velocityX) {
-        this.velocityX = velocityX;
+    public void setVelocityX(Speed speed) {
+        this.velocityX = speed.getSpeed();
     }
 
     public double getPositionX() {
         return positionX;
     }
-
-    public double getPositionY() {return positionY; }
 
     public void update(double time) {
         positionX += velocityX * time;

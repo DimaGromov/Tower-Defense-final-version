@@ -12,7 +12,7 @@ public class Controller implements EventHandler<MouseEvent> {
             double x = event.getX();
             double y = event.getY();
 
-            if(x > 800) {
+            if(x > 900) {
                 return;
             }
 
