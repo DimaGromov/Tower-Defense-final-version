@@ -1,0 +1,49 @@
+package sample;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
+import java.util.ArrayList;
+
+public class Enemys extends Sprite {
+
+    final String fileName = "Enemy.gif";
+
+    public Enemys() {
+        super();
+        setImage(fileName);
+        this.setPositionX(((int) (Math.random() * 400)), ((int) (150 + Math.random() * 400)));
+        enemys.add(this);
+
+    }
+
+    public static  ArrayList<Enemys> enemys = new ArrayList<>();
+
+    public void move(){
+        this.setVelocityX((int) (1 + Math.random() * 4));
+        this.update(3);
+
+        checkCollision();
+    }
+
+    private void checkCollision() {
+        boolean inter = false;
+
+        for (Bomb bomb : Bomb.bombs) {
+            if(this.intersects(bomb) && !bomb.getDead()){
+                inter = true;
+
+                bomb.setDead(true);
+                bomb.setImage("flame.gif");
+                setWidth(0,0);
+
+            }
+        }
+
+        if (inter) {
+            Enemys.enemys.remove(this);
+            MoneyCount.addMoney(100);
+        }
+    }
+}
